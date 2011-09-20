@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block title %}Edit Gallery -- {% endblock %}
+{% block body %}
+{% if error %}<div class=error><strong>Error:</strong> {{ error }}</div>{% endif %}
+<div class=grid_1>
+    <p></p>
+</div>
+{% from "_formhelpers.html" import render_field %}
+<div class=grid_10>
+    {% if request.args.get('add_imgs', '') %}
+    <form action="" method="post">
+        <p>
+        <input type=submit class=button value="Save (Delete Selected)">
+        </p>
+        {% for img, path in imgs.iteritems() %}
+        <div class=grid_3>
+            <div class=img-thumb>
+                    <img src=/{{ path[-1] }}> 
+                    {{ render_field(form.selects) }}
+            </form>
+        </div>
+    </div>
+    {% if loop.index % 3 == 0 %}
+    <div class=grid_1>
+        <p></p>
+    </div>
+    <div class=clear></div>
+    {% endif %}
+    {% endfor %}
+    {% else %}
+    <form method="post" action="">
+            {{ render_field(form.celeb) }}
+            {{ render_field(form.name) }}
+            {{ render_field(form.desc) }}
+        <p><input type=submit class=button value=Update></p>
+        <input type=hidden name=_csrf_token value="{{ csrf_token() }}">
+    </form>
+    {% endif %}
+</div>
+<div class=grid_1>
+    <p></p>
+</div>
+<div class=clear></div>
+{% endblock %}

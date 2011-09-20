@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Add Gallery - {% endblock %}
+{% block body %}
+<div class="grid">
+    <div class="span6">
+        <h2>Add Gallery</h2>
+        <small>
+            <p>Enter a URL to fetch images from. Only images larger than 300x300px
+            will be used. Images must be either PNG or JPG.
+            </p>
+        </small>
+    </div>
+    <div class="span2">
+        <p></p>
+    </div>
+    <div class="span8">
+        {% from "macros.html" import with_errors %}
+        <form method="post" action="">
+            {{ with_errors(form.url, class='field') }}
+            {{ with_errors(form.celeb, class='field') }}
+            {{ with_errors(form.name, class='field') }}
+            {{ with_errors(form.desc, class='field') }}
+            <p><input type="submit" class="button" value="Add"></p>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  {% if error %}
+    <div class=error><strong>Error:</strong> {{ error }}</div>
+  {% endif %}
+  {% from "_formhelpers.html" import render_field %}
+    <p>test</p>
+ {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block body %}
+  {% if error %}<div class=error><strong>Error:</strong> {{ error }}</div>{% endif %}
+  {% from "_formhelpers.html" import render_field %}
+  <div class=grid_3>
+    <h2>Sign Up</h2>
+  </div>
+  <div class=grid_3>
+  <form method="post" action="/register">
+    <dl>
+      {{ render_field(form.username) }}
+      {{ render_field(form.email) }}
+      {{ render_field(form.pass_one) }}
+      {{ render_field(form.pass_two) }}
+    </dl>
+    <p><input type=submit class=button value=Register></input></p>
+    <input type=hidden name=_csrf_token value="{{ csrf_token() }}">
+  </form>
+  </div>
+  <div class=clear></div>
+{% endblock %}
